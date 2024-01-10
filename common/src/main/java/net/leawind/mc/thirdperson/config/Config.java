@@ -6,21 +6,6 @@ import net.leawind.mc.thirdperson.core.cameraoffset.CameraOffsetScheme;
 import net.leawind.mc.util.monolist.StaticMonoList;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * 模组配置项
- * <p>
- * 普通配置项可由用户在配置屏幕中调整，程序可以直接使用其值。
- * <p>
- * 也有一些配置项比较特殊。以相机离玩家的距离的调整范围为例，以下3个选项可以由玩家直接调整：
- * <p>
- * available_distance_count, camera_distance_min, camera_distance_max
- * <p>
- * 但让程序直接使用这些值就有点不方便了。需要先根据这些值生成一个 MonoList 对象，再让程序直接访问这个 MonoList对象。
- * <p>
- * 如果每次使用时都实例化一个新的MonoList对象就太浪费了，所以最好在修改配置后立即生成它并记录在Config的某一字段中（distanceMonoList）
- * <p>
- * 所以原本的3个选项不必被外界访问，可以使用private。
- */
 public class Config {
 	@NotNull
 	public static Config get () {
