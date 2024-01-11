@@ -12,6 +12,6 @@ import net.leawind.mc.thirdperson.config.ConfigManager;
 public class ModmenuEntry implements ModMenuApi {
 	@Override
 	public ConfigScreenFactory<?> getModConfigScreenFactory () {
-		return ConfigManager.get()::getConfigScreen;
+		return ConfigManager.get()::buildConfigScreen;
 	}
 }

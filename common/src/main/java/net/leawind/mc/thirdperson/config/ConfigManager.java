@@ -10,17 +10,14 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
 public class ConfigManager {
-	public static final Logger LOGGER = LoggerFactory.getLogger(ThirdPersonMod.MOD_ID);
-	private final       Gson   GSON   = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().disableHtmlEscaping().create();
-	private             Config config = new Config();
+	private final Gson   GSON   = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().disableHtmlEscaping().create();
+	private       Config config = new Config();
 
 	@NotNull
 	public static ConfigManager get () {
@@ -54,14 +51,13 @@ public class ConfigManager {
 			assert ModConstants.CONFIG_FILE.getParentFile().mkdirs();
 			if (ModConstants.CONFIG_FILE.exists()) {
 				config = GSON.fromJson(Files.readString(ModConstants.CONFIG_FILE.toPath(), StandardCharsets.UTF_8), Config.class);
-				config.update();
 			} else {
-				LOGGER.info("Config not found, creating one.");
+				ThirdPersonMod.LOGGER.info("Config not found, creating one.");
 				save();
-				config.update();
 			}
+			config.update();
 		} catch (IOException e) {
-			LOGGER.error("Failed to load config.", e);
+			ThirdPersonMod.LOGGER.error("Failed to load config.", e);
 		}
 	}
 
@@ -69,8 +65,15 @@ public class ConfigManager {
 		try {
 			FileUtils.writeStringToFile(ModConstants.CONFIG_FILE, GSON.toJson(this.config), StandardCharsets.UTF_8);
 		} catch (IOException e) {
-			LOGGER.error("Failed to save config.", e);
+			ThirdPersonMod.LOGGER.error("Failed to save config.", e);
 		}
+	}
+
+	/**
+	 * 获取配置实例
+	 */
+	public Config getConfig () {
+		return this.config;
 	}
 
 	/**
@@ -78,11 +81,7 @@ public class ConfigManager {
 	 * <p>
 	 * 提供给 ModMenu
 	 */
-	public Screen getConfigScreen (Screen parent) {
+	public Screen buildConfigScreen (Screen parent) {
 		return ExpectPlatform.buildConfigScreen(config, parent);
-	}
-
-	public Config getConfig () {
-		return this.config;
 	}
 }

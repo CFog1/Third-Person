@@ -12,10 +12,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value=net.minecraft.client.MouseHandler.class, priority=2000)
 public class MouseHandlerMixin {
-	@Shadow
-	private double accumulatedDX;
-	@Shadow
-	private double accumulatedDY;
+	@Shadow private double accumulatedDX;
+	@Shadow private double accumulatedDY;
 
 	/**
 	 * 在 MouseHandler 尝试转动玩家前，阻止其行为。

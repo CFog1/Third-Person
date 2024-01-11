@@ -14,8 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value=net.minecraft.client.Camera.class, priority=2000)
 public abstract class CameraMixin {
-	@Unique
-	private boolean l3p$wasFirstPerson = true;
+	@Unique private boolean l3p$wasFirstPerson = true;
 
 	/**
 	 * 如果刚 进入/退出 第三人称视角，则调用相应的事件处理函数
