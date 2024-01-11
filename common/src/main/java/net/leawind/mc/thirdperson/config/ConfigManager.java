@@ -58,6 +58,7 @@ public class ConfigManager {
 			} else {
 				LOGGER.info("Config not found, creating one.");
 				save();
+				config.update();
 			}
 		} catch (IOException e) {
 			LOGGER.error("Failed to load config.", e);
