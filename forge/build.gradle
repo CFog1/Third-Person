@@ -23,11 +23,11 @@ configurations {
 }
 dependencies {
 	forge "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-	// Architectury-api
 	modApi "dev.architectury:architectury-forge:${architectury_version}"
-	//
 	common(project(path: ":common", configuration: "namedElements")) { transitive false }
 	shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
+	// Carbon Config
+	modImplementation "maven.modrinth:carbon-config:${carbon_config_forge_version}"
 }
 shadowJar {
 	exclude "fabric.mod.json"

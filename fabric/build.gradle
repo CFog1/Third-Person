@@ -23,7 +23,8 @@ dependencies {
 	shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 	// ModMenu
 	modApi("com.terraformersmc:modmenu:${modmenu_version}") { transitive(false) }
-	
+	// Carbon Config
+	modImplementation "maven.modrinth:carbon-config:${carbon_config_fabric_version}"
 }
 shadowJar {
 	exclude "architectury.common.json"

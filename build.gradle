@@ -33,8 +33,12 @@ allprojects {
 		maven { url 'https://maven.aliyun.com/repository/google' }
 		
 		maven { url "https://jitpack.io" }
-		// ModMenu
+		// Mod Menu
 		maven { url "https://maven.terraformersmc.com/releases" }
+		
+		// Carbon Config
+		maven { url "https://api.modrinth.com/maven" }
+		
 	}
 	tasks.withType(JavaCompile) {
 		options.encoding = "UTF-8"
